@@ -6,8 +6,8 @@ function spinWords(string){
    * Strings passed in will consist of only letters and spaces. 
    * Spaces will be included only when more than one word is present.
 Examples:
-    "Hey fellow warriors"  --> "Hey wollef sroirraw" 
-    "This is a test        --> "This is a test" 
+    "Hey fellow warriors"--> "Hey wollef sroirraw" 
+    "This is a test--> "This is a test" 
    */
   
   let words = []; // an array to store each word of the phrase
