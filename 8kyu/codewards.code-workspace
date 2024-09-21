@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"name": "Test",
+			"path": "../../../Downloads/Microsoft VS Code/Test"
+		}
+	],
+	"settings": {
+		"dataworkspace.excludedProjects": [
+			"Test/Test.sqlproj"
+		]
+	}
+}

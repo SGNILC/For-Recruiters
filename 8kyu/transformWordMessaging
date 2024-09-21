@@ -1,0 +1,44 @@
+function spinWords(string){
+  /**
+   * Write a function that takes in a string of one or more words, 
+   * and returns the same string, but with all words that have five or 
+   * more letters reversed (Just like the name of this Kata). 
+   * Strings passed in will consist of only letters and spaces. 
+   * Spaces will be included only when more than one word is present.
+Examples:
+    "Hey fellow warriors"  --> "Hey wollef sroirraw" 
+    "This is a test        --> "This is a test" 
+   */
+  
+  let words = []; // an array to store each word of the phrase
+  let currWord // the current word, later used in the for loop
+  let reversedCurrWord = "" // the reversed version of the word being tracked
+  let letter // the letter being tracked
+  words = string.split(" "); // store each word of phrase into an array
+  
+  // go through the array of words...
+  for (i = 0; i < words.length; i++){
+    currWord = words[i]; //the current word being tracked
+    
+    // if the word is greater than or equal to 5 characters...
+    if (currWord.length >= 5){
+      // reverse the word and replace it at value at the current index in the word array
+         words[i] = currWord.split("").reverse().join("");
+    }
+  }
+  
+  let transformedSentence = "" // var to store transformed phrase
+  // goes through the updated version of word array
+  for (i = 0; i < words.length; i++){
+    // if the array has less than 2 values, this loop will simply return the word
+    if (words.length < 2){
+        transformedSentence = transformedSentence.concat(words[i]);
+    }
+    // if the array has more than 2 values, it will combine the words to form a phrase
+    else{
+      transformedSentence = transformedSentence.concat(words[i], " ");
+    }
+  }
+    // return the new phrase including reversed words
+    return transformedSentence.trimEnd();
+}
