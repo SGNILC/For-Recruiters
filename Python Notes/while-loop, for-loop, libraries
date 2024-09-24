@@ -1,0 +1,70 @@
+# CLASS - 09.23 while loop, for-loop, and libraries
+def receivedScore(score):
+    if score >= 60 and score <70:
+        print("Score is a D");
+    elif score < 60:
+        print("F")
+    else:
+        print("P")
+
+print(receivedScore(55))
+
+i = 0
+
+while (i < 10):
+  #print(i)
+  i+=3
+
+#Part I
+i = 5 
+
+while(i < 1235):
+  #print(i)
+  i+=1
+
+#part II
+a = [1,2,3,4,5,6]
+b = [1,"two",3,"four",5,"six"]
+c = ["I", "really", "like", "이달의 소녀"]
+index = 0
+while (index < len(b)):
+  print(b[index])
+  index+=1
+
+#part III
+def printList(list):
+  index = 0
+
+  while (index < len(list)):
+    print(list[index])
+    index+=1
+
+printList(c)
+
+############################################################
+d = [ [0,0], [1,1] , [-1,1] , [1,-1] , [-1, -1] , [-0,-0]]
+
+for x in d:
+  print(x)
+
+for x in range(20):
+  print(x)
+############################################################
+# NumPy: Numerical Python...very good at working with array
+        # import numpy as np
+# Pandas: uses Dataframe object that can work with various formals and frameworks (Excell, CSV, SQL)
+        # import pandas as pd
+# Matplotlib: use to creaste static or animated visualizaiton 
+        # import matplotlib.pyplot as plt
+# SciPy: for intergration
+
+import pandas as pd
+
+cars = pd.read_csv('car_data.csv')
+df = pd.DataFrame(cars)
+
+print(df.info())
+print(df.shape)
+print(df.head())
+print(df.tail())
+print(df.describe())
