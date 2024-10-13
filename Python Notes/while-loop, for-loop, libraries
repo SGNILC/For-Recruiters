@@ -1,3 +1,5 @@
+import pandas as pd
+
 # CLASS - 09.23 while loop, for-loop, and libraries
 def receivedScore(score):
     if score >= 60 and score <70:
@@ -42,25 +44,25 @@ def printList(list):
 printList(c)
 
 ############################################################
-d = [ [0,0], [1,1] , [-1,1] , [1,-1] , [-1, -1] , [-0,-0]]
-
-for x in d:
-  print(x)
-
-for x in range(20):
-  print(x)
 ############################################################
 # NumPy: Numerical Python...very good at working with array
         # import numpy as np
 # Pandas: uses Dataframe object that can work with various formals and frameworks (Excell, CSV, SQL)
         # import pandas as pd
-# Matplotlib: use to creaste static or animated visualizaiton 
+# Matplotlib: use to creaste static or animated visualizaiton
         # import matplotlib.pyplot as plt
 # SciPy: for intergration
+d = [ [0,0], [1,1] , [-1,1] , [1,-1] , [-1, -1] , [-0,-0]]
+
+# for x in d:
+#   #print(x)
+
+# for x in range(20):
+#   #print(x)
 
 import pandas as pd
 
-cars = pd.read_csv('car_data.csv')
+cars = pd.read_csv('/content/sample_data/car_data.csv')
 df = pd.DataFrame(cars)
 
 print(df.info())
@@ -68,3 +70,47 @@ print(df.shape)
 print(df.head())
 print(df.tail())
 print(df.describe())
+
+#Class 09/25 - deriving output from data
+
+#derives a list and count of unique cars
+unique_cars = df["Car_Name"].value_counts()
+unique_cars
+
+#visualizing the data
+import plotly.express as px
+#returns the top 10 cars and their values in the list
+top_ten = unique_cars.head(10)
+plot1 = px.bar(top_ten, color = top_ten, title='Top 10 Cars by Car Count')
+
+#display the plot
+plot1.show()
+
+#making a scatter plot
+plot2 = px.scatter(df, x="Selling_Price", y="Car_Name", size = "Selling_Price", color="Selling_Price",
+                      labels={"Selling_Price": "Selling Price","Car_Name": "Car Name"}, title="Vizualization of Car Selling Prices")
+plot2.show()
+
+#creating a table that should the correlation between the car name and KMS_driven
+most_km = df[["Car_Name","Kms_Driven"]].sort_values(by="Kms_Driven", ascending= False)
+most_km
+
+#getting the car age
+age = [] #a list to store the car age
+
+# adds the car's age to a column, 'age', which will be added to the df
+for i in df['Year']:
+  age.append(2024-i)
+df.insert(2,"Car_Age",age)
+df.drop(columns=["Car_Name", "Year"], inplace=True)
+df
+
+#Creation of correlation Matrix
+import seaborn as sns
+
+#creates a df with only four collumns with the goal of analyzing their correlation to car_age
+data = df[['Car_Age', 'Selling_Price', "Present_Price", 'Kms_Driven']]
+correlation_matrix = data.corr()
+print(correlation_matrix)
+#the heat map shows a visual of +, -, and neutral (1) correlation between the variables
+sns.heatmap(correlation_matrix, annot=True)
